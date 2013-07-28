@@ -27,7 +27,7 @@ var hamlet_handler = function(bundle, source_path, serve_path, where) {
     );
   }
 
-  console.log("where: " + where + ": serving: " + source_path + " to : " + serve_path + " val: " + html );
+  // console.log("where: " + where + ": serving: " + source_path + " to : " + serve_path + " val: " + html );
   // var contents = new Buffer(html);
   // bundle.add_resource({ type: "body", data: html, where: where });
   //
