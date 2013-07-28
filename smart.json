@@ -1,7 +1,7 @@
-{ "name": "hamlet"
+{ "name": "hamlet-handlebars"
 , "description": "Jade like HTML templates with closer to HTML syntax"
-, "homepage": "https://github.com/maxcan/meteor-hamlet"
+, "homepage": "https://github.com/maxcan/meteor-hamlet-handlebars"
 , "author": "Max Cantor <i@cantor.mx>"
 , "version": "0.0.1"
-, "git": "https://github.com/maxcan/meteor-hamlet.git"
+, "git": "https://github.com/maxcan/meteor-hamlet-handlebars.git"
 }
