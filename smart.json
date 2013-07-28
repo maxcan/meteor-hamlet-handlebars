@@ -1,0 +1,7 @@
+{ "name": "hamlet"
+, "description": "Jade like HTML templates with closer to HTML syntax"
+, "homepage": "https://github.com/maxcan/meteor-hamlet"
+, "author": "Max Cantor <i@cantor.mx>"
+, "version": "0.0.1"
+, "git": "https://github.com/maxcan/meteor-hamlet.git"
+}
