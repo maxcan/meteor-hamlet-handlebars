@@ -12,7 +12,7 @@ var hamlet_handler = function(bundle, source_path, serve_path, where) {
   var fs = Npm.require('fs');
   var path = Npm.require('path');
   var hamlet = Npm.require('hamlet').hamlet;
-  var html_scanner = Npm.require(path.join(process.env.PACKAGE_DIRS, 'hamlet', 'html_scanner'));
+  var html_scanner = Npm.require(path.join(process.env.PACKAGE_DIRS, 'hamlet-handlebars', 'html_scanner'));
   serve_path = serve_path + '.html';
 
   var hamletContents = fs.readFileSync(source_path);
