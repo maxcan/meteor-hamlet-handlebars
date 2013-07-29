@@ -2,23 +2,26 @@ Package.describe({
   summary: "Jade like HTML templates with closer to HTML syntax",
 });
 
-Npm.depends(
-    {"hamlet": "0.2.0"}
-    );
+// Npm.depends( {"hamlet": "0.2.0"});
 
 Package.on_use(function (api) { api.use('handlebars', 'client'); });
 
 var hamlet_handler = function(bundle, source_path, serve_path, where) {
   var fs = Npm.require('fs');
   var path = Npm.require('path');
-  var hamlet = Npm.require('hamlet').hamlet;
+  // var hamlet = Npm.require('hamlet').hamlet;
   var html_scanner = Npm.require(path.join(process.env.PACKAGE_DIRS, 'hamlet-handlebars', 'html_scanner'));
+  // console.log(path.join(process.env.PACKAGE_DIRS, 'hamlet-handlebars', 'hamlet.js/lib/hamlet.js'));
+  var hamlet = Npm.require(path.join(process.env.PACKAGE_DIRS, 'hamlet-handlebars', 'hamlet.js/lib/hamlet.js')).hamlet;
   serve_path = serve_path + '.html';
 
+  // hamlet.templateSettings.interpolate = /\x12\x13\x14\x11foofoo\x11\x11/;
+  
   var hamletContents = fs.readFileSync(source_path);
   var html = null;
   try {
-    html = hamlet.toHtml(hamletContents.toString('utf8'));
+    escapedHamlet = hamletContents.toString('utf8').replace(/{{ *#([^}]*)}}/g, "__HAMLET_ESC_START$1__HAMLET_ESC_END__");
+    html = hamlet.toHtml(escapedHamlet);
   } catch (e) {
     return bundle.error(
       source_path + ':' +
@@ -26,8 +29,10 @@ var hamlet_handler = function(bundle, source_path, serve_path, where) {
       e.message
     );
   }
+  html = html.replace(/__HAMLET_ESC_START/g,"{{#");
+  html = html.replace(/__HAMLET_ESC_END__/g, "}}");
 
-  // console.log("where: " + where + ": serving: " + source_path + " to : " + serve_path + " val: " + html );
+  // console.log("where: " + where + "val: \n\t " + html + "\n" );
   // var contents = new Buffer(html);
   // bundle.add_resource({ type: "body", data: html, where: where });
   //
