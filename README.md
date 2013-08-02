@@ -1,3 +1,5 @@
+# warning... this doesn't work yet.  for some reason, the Template.xyz.events function and the Template.xyz.rendered property dont always work.
+
 meteor-hamlet-handlebars
 ========================
 
