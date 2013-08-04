@@ -5,10 +5,7 @@ Package.describe({
 // Npm.depends( {"hamlet": "0.2.0"});
 
 Package.on_use(function (api) {
-  api.use('startup', 'client');
-  api.use(['underscore', 'spark'], 'client');
-  // api.add_files('deftemplate.js', 'client');
-  api.use('handlebars', 'client');
+  api.use(['underscore', 'spark', 'handlebars', 'startup'], 'client');
 });
 
 var hamlet_handler = function(bundle, source_path, serve_path, where) {

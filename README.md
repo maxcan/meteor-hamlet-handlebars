@@ -1,4 +1,4 @@
-# warning... this doesn't work yet.  for some reason, the Template.xyz.events function and the Template.xyz.rendered property dont always work.
+## WARNING, this is very flaky.  Due to some hard coding by the MDG guys, all hamlet templates need to go into the `client/lib` directory.
 
 meteor-hamlet-handlebars
 ========================
