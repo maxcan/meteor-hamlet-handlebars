@@ -4,7 +4,12 @@ Package.describe({
 
 // Npm.depends( {"hamlet": "0.2.0"});
 
-Package.on_use(function (api) { api.use('handlebars', 'client'); });
+Package.on_use(function (api) {
+  api.use('startup', 'client');
+  api.use(['underscore', 'spark'], 'client');
+  // api.add_files('deftemplate.js', 'client');
+  api.use('handlebars', 'client');
+});
 
 var hamlet_handler = function(bundle, source_path, serve_path, where) {
   var fs = Npm.require('fs');
@@ -31,12 +36,7 @@ var hamlet_handler = function(bundle, source_path, serve_path, where) {
   }
   html = html.replace(/__HAMLET_ESC_START/g,"{{#");
   html = html.replace(/__HAMLET_ESC_END__/g, "}}");
-
-  // console.log("where: " + where + "val: \n\t " + html + "\n" );
-  // var contents = new Buffer(html);
-  // bundle.add_resource({ type: "body", data: html, where: where });
-  //
-  // var html_scanner = Package._require('html_scanner.js');
+  
   var results = html_scanner.scan(html, source_path);
 
   if (results.head)
@@ -47,26 +47,29 @@ var hamlet_handler = function(bundle, source_path, serve_path, where) {
     });
 
   if (results.body)
+    // console.log("--------- body -------- \n" + results.body.toString());
     bundle.add_resource({
       type: "body",
       data: results.body,
       where: where
     });
 
+  // console.log("wohere:  " + where);
   if (results.js) {
+    // console.log("--------- js -------- \n" + results.js.toString());
     var path_part = path.dirname(serve_path);
     if (path_part === '.')
       path_part = '';
     if (path_part.length && path_part !== path.sep)
       path_part = path_part + path.sep;
     var ext = path.extname(source_path);
-    var basename = path.basename(serve_path, ext);
+    var basename = path.basename(serve_path, ext).replace(/\.hamlet.html/g, "");
     serve_path = path_part + "template." + basename + ".js";
 
     bundle.add_resource({
       type: "js",
       path: serve_path,
-      data: new Buffer(results.js),
+      data: results.js, //new Buffer(results.js),
       source_file: source_path,
       where: where
     });
