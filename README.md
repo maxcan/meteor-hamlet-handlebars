@@ -1,5 +1,7 @@
 ## WARNING, this is very flaky.  Due to some hard coding by the MDG guys, all hamlet templates need to go into the `client/lib` directory.
 
+### Updated for meteor 0.6.5.  warning above may not apply
+
 meteor-hamlet-handlebars
 ========================
 

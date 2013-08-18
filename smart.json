@@ -2,6 +2,6 @@
 , "description": "Jade like HTML templates with closer to HTML syntax"
 , "homepage": "https://github.com/maxcan/meteor-hamlet-handlebars"
 , "author": "Max Cantor <i@cantor.mx>"
-, "version": "0.0.2"
+, "version": "0.1.0"
 , "git": "https://github.com/maxcan/meteor-hamlet-handlebars.git"
 }
